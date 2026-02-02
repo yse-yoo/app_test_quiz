@@ -4,164 +4,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>学習：アプリケーションテストの基礎</title>
+    <title>学習：テストツールとCI/CDプラットフォーム</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-slate-50 p-8">
+<body class="bg-slate-50 p-8 text-slate-900">
     <nav class="max-w-4xl mx-auto mb-8"><a href="index.html" class="text-blue-600 hover:underline">← 戻る</a></nav>
 
     <div class="max-w-4xl mx-auto px-6 py-12">
         <header class="text-center mb-16">
-            <h1 class="text-3xl md:text-4xl font-black text-slate-800 mb-4">テストの基本とツール</h1>
-            <p class="text-slate-500">実務で使われる主要なツールの特徴を今のうちに押さえておきましょう。</p>
+            <h1 class="text-3xl md:text-4xl font-black mb-4">テストの基本とツール</h1>
+            <p class="text-slate-500 italic">個別のテストツールと、それらを動かす自動化基盤を整理して理解しましょう。</p>
         </header>
 
         <div class="grid gap-12">
             <section class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
-                <h2 class="text-2xl font-bold border-l-4 border-purple-500 pl-4 mb-8">主要テストツールの詳細</h2>
-
-                <div class="space-y-12">
-                    <div>
-                        <h3 class="flex items-center gap-2 text-lg font-bold text-slate-700 mb-4">
-                            <span class="bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm">回帰 / E2E</span>
-                            ブラウザ自動操作ツール
-                        </h3>
-                        <div class="grid md:grid-cols-3 gap-4">
-                            <div class="p-4 border border-slate-100 rounded-xl bg-slate-50">
-                                <strong class="text-blue-600 block mb-1">Playwright</strong>
-                                <p class="text-xs text-slate-500 mb-2">Microsoft製の最新鋭ツール。</p>
-                                <ul class="text-[11px] list-disc list-inside space-y-1 text-slate-600">
-                                    <li>全ブラウザを1つのAPIで操作可能</li>
-                                    <li>動作が非常に高速</li>
-                                </ul>
-                            </div>
-                            <div class="p-4 border border-slate-100 rounded-xl bg-slate-50">
-                                <strong class="text-blue-600 block mb-1">Selenium</strong>
-                                <p class="text-xs text-slate-500 mb-2">歴史が長く、最も普及している老舗。</p>
-                                <ul class="text-[11px] list-disc list-inside space-y-1 text-slate-600">
-                                    <li>多くの言語（Java, Python等）に対応</li>
-                                    <li>学習リソースが豊富</li>
-                                </ul>
-                            </div>
-                            <div class="p-4 border border-slate-100 rounded-xl bg-slate-50">
-                                <strong class="text-blue-600 block mb-1">Cypress</strong>
-                                <p class="text-xs text-slate-500 mb-2">フロントエンド特化の高速ツール。</p>
-                                <ul class="text-[11px] list-disc list-inside space-y-1 text-slate-600">
-                                    <li>ブラウザ内で直接実行される</li>
-                                    <li>デバッグ体験が非常に優れている</li>
-                                </ul>
-                            </div>
+                <h2 class="text-2xl font-bold border-l-4 border-purple-500 pl-4 mb-8">1. 主要テスト実行ツール</h2>
+                <div class="space-y-8">
+                    <div class="grid md:grid-cols-1 gap-6">
+                        <div class="p-5 rounded-xl bg-slate-50 border border-slate-100">
+                            <span class="bg-purple-100 text-purple-600 px-2 py-1 rounded font-bold uppercase">回帰 /
+                                E2E</span>
+                            <h3 class="font-bold my-2 text-slate-800">ブラウザ自動操作</h3>
+                            <ul class="space-y-2 text-slate-600">
+                                <li><strong class="text-blue-600">Playwright:</strong> 高速・最新鋭</li>
+                                <li><strong class="text-blue-600">Selenium:</strong> 普及率No.1の老舗</li>
+                                <li><strong class="text-blue-600">Cypress:</strong> フロントエンド特化</li>
+                            </ul>
                         </div>
-                    </div>
-
-                    <div>
-                        <h3 class="flex items-center gap-2 text-lg font-bold text-slate-700 mb-4">
-                            <span class="bg-amber-100 text-amber-600 px-3 py-1 rounded-full text-sm">負荷テスト</span>
-                            サーバー耐久性検証ツール
-                        </h3>
-                        <div class="grid md:grid-cols-3 gap-4">
-                            <div class="p-4 border border-slate-100 rounded-xl bg-slate-50">
-                                <strong class="text-amber-600 block mb-1">Apache JMeter</strong>
-                                <p class="text-xs text-slate-500 mb-2">最も標準的な負荷テストツール。</p>
-                                <ul class="text-[11px] list-disc list-inside space-y-1 text-slate-600">
-                                    <li>GUIで操作でき、多機能</li>
-                                    <li>DBやFTPなど多様なテストが可能</li>
-                                </ul>
-                            </div>
-                            <div class="p-4 border border-slate-100 rounded-xl bg-slate-50">
-                                <strong class="text-amber-600 block mb-1">k6</strong>
-                                <p class="text-xs text-slate-500 mb-2">エンジニアに人気のモダンなツール。</p>
-                                <ul class="text-[11px] list-disc list-inside space-y-1 text-slate-600">
-                                    <li>JavaScriptでテストコードが書ける</li>
-                                    <li>非常に軽量で自動化しやすい</li>
-                                </ul>
-                            </div>
-                            <div class="p-4 border border-slate-100 rounded-xl bg-slate-50">
-                                <strong class="text-amber-600 block mb-1">Gatling</strong>
-                                <p class="text-xs text-slate-500 mb-2">高パフォーマンスな解析ツール。</p>
-                                <ul class="text-[11px] list-disc list-inside space-y-1 text-slate-600">
-                                    <li>一度に数万の接続をシミュレート可能</li>
-                                    <li>美しいレポート出力機能</li>
-                                </ul>
-                            </div>
+                        <div class="p-5 rounded-xl bg-slate-50 border border-slate-100">
+                            <span class="bg-amber-100 text-amber-600 px-2 py-1 rounded font-bold uppercase">負荷テスト</span>
+                            <h3 class="font-bold my-2 text-slate-800">サーバー耐久性</h3>
+                            <ul class="space-y-2 text-slate-600">
+                                <li><strong class="text-amber-600">k6:</strong> JSで書けるモダンツール</li>
+                                <li><strong class="text-amber-600">JMeter:</strong> 多機能な標準ツール</li>
+                                <li><strong class="text-amber-600">Gatling:</strong> 高性能な解析向き</li>
+                            </ul>
                         </div>
-                    </div>
-
-                    <div>
-                        <h3 class="flex items-center gap-2 text-lg font-bold text-slate-700 mb-4">
-                            <span class="bg-emerald-100 text-emerald-600 px-3 py-1 rounded-full text-sm">TDD /
+                        <div class="p-5 rounded-xl bg-slate-50 border border-slate-100">
+                            <span class="bg-emerald-100 text-emerald-600 px-2 py-1 rounded font-bold uppercase">TDD /
                                 ユニット</span>
-                            コード検証フレームワーク
-                        </h3>
-                        <div class="grid md:grid-cols-3 gap-4">
-                            <div class="p-4 border border-slate-100 rounded-xl bg-slate-50">
-                                <strong class="text-emerald-600 block mb-1">Jest</strong>
-                                <p class="text-xs text-slate-500 mb-2">JS/TS開発のデファクトスタンダード。</p>
-                                <ul class="text-[11px] list-disc list-inside space-y-1 text-slate-600">
-                                    <li>設定が簡単で即使える</li>
-                                    <li>React等の開発で標準的に採用</li>
-                                </ul>
-                            </div>
-                            <div class="p-4 border border-slate-100 rounded-xl bg-slate-50">
-                                <strong class="text-emerald-600 block mb-1">JUnit</strong>
-                                <p class="text-xs text-slate-500 mb-2">Javaテストの元祖・金字塔。</p>
-                                <ul class="text-[11px] list-disc list-inside space-y-1 text-slate-600">
-                                    <li>堅牢なテストスイートを構築可能</li>
-                                    <li>テスト自動化の歴史そのもの</li>
-                                </ul>
-                            </div>
-                            <div class="p-4 border border-slate-100 rounded-xl bg-slate-50">
-                                <strong class="text-emerald-600 block mb-1">Pytest</strong>
-                                <p class="text-xs text-slate-500 mb-2">Python用の強力なフレームワーク。</p>
-                                <ul class="text-[11px] list-disc list-inside space-y-1 text-slate-600">
-                                    <li>非常にシンプルにテストが書ける</li>
-                                    <li>プラグインによる拡張性が高い</li>
-                                </ul>
-                            </div>
+                            <h3 class="font-bold my-2 text-slate-800">コード検証</h3>
+                            <ul class="space-y-2 text-slate-600">
+                                <li><strong class="text-emerald-600">Jest:</strong> JS開発の主流</li>
+                                <li><strong class="text-emerald-600">JUnit:</strong> Javaの金字塔</li>
+                                <li><strong class="text-emerald-600">Pytest:</strong> Python用の強力ツール</li>
+                            </ul>
                         </div>
                     </div>
+                </div>
+            </section>
 
-                    <div>
-                        <h3 class="flex items-center gap-2 text-lg font-bold text-slate-700 mb-4">
-                            <span class="bg-red-100 text-red-600 px-3 py-1 rounded-full text-sm">CI / CD</span>
-                            自動化プラットフォーム (オーケストレーター)
+            <section class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
+                <h2 class="text-2xl font-bold border-l-4 border-red-500 pl-4 mb-8">2. 自動化基盤 (CI/CD)</h2>
+                <p class="text-slate-600 mb-8">
+                    上記のテストツールを「いつ・どこで・自動で実行するか」を管理する<strong>オーケストレーター</strong>です。
+                </p>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="p-6 rounded-xl bg-blue-50/50 border border-blue-100">
+                        <h3 class="flex items-center gap-2 font-bold text-lg text-blue-800 mb-4">
+                            <span>☁️</span> SaaS / クラウド一体型
                         </h3>
-                        <div class="grid md:grid-cols-3 gap-4">
-                            <div class="p-4 border border-slate-100 rounded-xl bg-slate-50">
-                                <strong class="text-red-600 block mb-1">GitHub Actions</strong>
-                                <p class="text-xs text-slate-500 mb-2">GitHub一体型のモダンな自動化ツール。</p>
-                                <ul class="text-[11px] list-disc list-inside space-y-1 text-slate-600">
-                                    <li>設定ファイル(YAML)を置くだけで即開始</li>
-                                    <li>GitHubリポジトリとの親和性が最強</li>
-                                    <li>多くのクラウドサービスと連携可能</li>
-                                </ul>
-                            </div>
-                            <div class="p-4 border border-slate-100 rounded-xl bg-slate-50">
-                                <strong class="text-red-600 block mb-1">Jenkins</strong>
-                                <p class="text-xs text-slate-500 mb-2">自由度の高い老舗の自動化サーバー。</p>
-                                <ul class="text-[11px] list-disc list-inside space-y-1 text-slate-600">
-                                    <li>プラグインが豊富で何でも自動化できる</li>
-                                    <li>自前サーバーで運用するためカスタマイズ自在</li>
-                                    <li>大規模・複雑なパイプラインに強い</li>
-                                </ul>
-                            </div>
-                            <div class="p-4 border border-slate-100 rounded-xl bg-slate-50">
-                                <strong class="text-red-600 block mb-1">GitLab CI/CD</strong>
-                                <p class="text-xs text-slate-500 mb-2">DevOpsライフサイクルを1つで完結。</p>
-                                <ul class="text-[11px] list-disc list-inside space-y-1 text-slate-600">
-                                    <li>計画からデプロイまでを1つの画面で管理</li>
-                                    <li>セキュリティスキャン等の機能が強力</li>
-                                    <li>コンテナ(Docker)連携が非常にスムーズ</li>
-                                </ul>
-                            </div>
-                        </div>
+                        <ul class="space-y-3 text-slate-700">
+                            <li><strong>GitHub Actions:</strong> リポジトリ直結で導入が最も手軽。</li>
+                            <li><strong>CircleCI:</strong> ビルドの爆速さと設定の柔軟性が魅力。</li>
+                            <li><strong>GitLab CI:</strong> 開発から運用まで1つのツールで完結。</li>
+                        </ul>
+                    </div>
+
+                    <div class="p-6 rounded-xl bg-red-50/50 border border-red-100">
+                        <h3 class="flex items-center gap-2 font-bold text-lg text-red-800 mb-4">
+                            <span>🏗️</span> セルフホスト / サーバー型
+                        </h3>
+                        <ul class="space-y-3 text-slate-700">
+                            <li><strong>Jenkins:</strong> 膨大なプラグインを持つ、自動化の巨匠。</li>
+                            <li><strong>TeamCity:</strong> 高機能かつ美しいUI。Javaやゲーム開発に強み。</li>
+                            <li><strong>Bamboo:</strong> JiraなどAtlassian製品との連携が最強。</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mt-8 p-5 bg-amber-50 rounded-xl border border-amber-100 flex gap-4 items-start">
+                    <span class="text-2xl">💡</span>
+                    <div class="text-amber-900 leading-relaxed">
+                        <h4 class="font-bold mb-1">選定のヒント</h4>
+                        メンテナンスを減らしたいモダンなプロジェクトは <strong>SaaS型</strong>。
+                        独自のセキュリティ要件や、複雑なオンプレミス環境を持つ大規模開発は <strong>サーバー型</strong> を選ぶのが一般的です。
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 mt-2">
+                <h2 class="text-2xl font-bold border-l-4 border-indigo-500 pl-4 mb-8">3. AI駆動型オートメーション</h2>
+                <p class="text-sm text-slate-600 mb-6">
+                    「手順」を教えるのではなく、「目的」を伝えるだけでAIがブラウザを操作する新しい潮流です。
+                </p>
+
+                <div class="grid md:grid-cols-1 gap-6">
+                    <div class="p-5 rounded-xl bg-indigo-50/50 border border-indigo-100">
+                        <span class="bg-indigo-100 text-indigo-600 px-2 py-1 rounded text-[10px] font-bold uppercase">AI
+                            Agent</span>
+                        <h3 class="font-bold my-2 text-slate-800">ブラウザ操作代行</h3>
+                        <ul class="text-sm space-y-2 text-slate-600">
+                            <li><strong class="text-indigo-600">MultiOn / Skyvern:</strong>
+                                自然言語で指示を出すだけで、複雑なWeb操作を完結させる。</li>
+                            <li><strong class="text-indigo-600">Operator:</strong> OpenAIなどが開発を進める、PC操作全般を代行するエージェント。
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="p-5 rounded-xl bg-indigo-50/50 border border-indigo-100">
+                        <span
+                            class="bg-indigo-100 text-indigo-600 px-2 py-1 rounded text-[10px] font-bold uppercase">Self-Healing</span>
+                        <h3 class="font-bold my-2 text-slate-800">自己修復テスト</h3>
+                        <ul class="text-sm space-y-2 text-slate-600">
+                            <li><strong class="text-indigo-600">mabl / Autify:</strong>
+                                画面の仕様が変わっても、AIが判断してテストコードを自動修正する。</li>
+                        </ul>
                     </div>
                 </div>
             </section>
         </div>
 
-
+        <div class="mt-16 text-center">
+            <a href="quiz.html"
+                class="inline-block bg-slate-900 text-white px-10 py-4 rounded-full font-bold hover:bg-slate-800 transition shadow-lg">
+                知識をクイズで試す
+            </a>
+        </div>
     </div>
 </body>
 
