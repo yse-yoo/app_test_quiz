@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,19 +14,22 @@
         }
     </style>
 </head>
+
 <body class="bg-slate-50 p-8">
     <nav class="max-w-5xl mx-auto mb-8"><a href="index.html" class="text-blue-600 hover:underline">← 戻る</a></nav>
 
-    <div class="max-w-5xl mx-auto">
+
+    <section class="max-w-5xl mx-auto">
         <header class="text-center mb-16">
             <h1 class="text-4xl font-extrabold text-slate-800">V字モデル・エクスプローラー</h1>
             <p class="text-slate-500 mt-2">1から順に進み、4番で折り返して、7番のゴールを目指します</p>
         </header>
 
         <div id="v-model-main" class="flex flex-col gap-6 mb-16">
-            </div>
+        </div>
 
-        <div id="detail-panel" class="max-w-3xl mx-auto bg-white border-2 border-blue-200 rounded-2xl p-8 shadow-xl transition-all opacity-0 transform translate-y-4">
+        <div id="detail-panel"
+            class="max-w-3xl mx-auto bg-white border-2 border-blue-200 rounded-2xl p-8 shadow-xl transition-all opacity-0 transform translate-y-4">
             <div class="flex items-center gap-4 mb-4">
                 <span id="detail-badge" class="px-3 py-1 rounded-full text-xs font-bold uppercase text-white"></span>
                 <h2 id="detail-title" class="text-2xl font-bold text-slate-800"></h2>
@@ -35,9 +39,51 @@
                 <span id="detail-relation"></span>
             </div>
         </div>
-    </div>
+    </section>
+
+    <section class="max-w-5xl mx-auto mt-16 mb-16">
+        <h2 class="text-2xl font-bold text-slate-800 mb-8 flex items-center gap-2">
+            <span class="bg-blue-600 text-white p-2 rounded-lg text-sm">Why?</span>
+            なぜV字モデルが必要なのか？
+        </h2>
+
+        <div class="grid md:grid-cols-2 gap-8 text-sm">
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                <h3 class="font-bold text-lg text-blue-600 mb-4 flex items-center gap-2">
+                    🛒 Webアプリ (ECサイト)
+                </h3>
+                <ul class="space-y-4 text-slate-600 leading-relaxed">
+                    <li>
+                        <strong class="text-slate-800 block">不整合を防ぐ：</strong>
+                        「決済ボタン」をプログラミングする際、基本設計（外部連携）を無視して作ると、後でクレジットカード会社との通信エラーが発生します。
+                    </li>
+                    <li>
+                        <strong class="text-slate-800 block">手戻りの防止：</strong>
+                        リリース直前に「送料計算が間違っている（要件ミス）」と気づくと数百万の損失になります。受入テストと要件定義を対比させることで、早期にズレを検知します。
+                    </li>
+                </ul>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                <h3 class="font-bold text-lg text-purple-600 mb-4 flex items-center gap-2">
+                    🎮 ゲーム開発 (アクションRPG)
+                </h3>
+                <ul class="space-y-4 text-slate-600 leading-relaxed">
+                    <li>
+                        <strong class="text-slate-800 block">バグの局所化：</strong>
+                        いきなりボス戦（システムテスト）で不具合が出ると、原因が「攻撃力計算ロジック」なのか「通信ラグ」なのか不明です。単体テストでロジックを固めるからこそ、原因を特定できます。
+                    </li>
+                    <li>
+                        <strong class="text-slate-800 block">体験の保証：</strong>
+                        「爽快なアクション（要件）」が実現できているか、最後に受入テストで確認します。数値上のダメージ（詳細設計）が正しくても、手触りが悪ければ修正が必要だからです。
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
 
     <script src="js/v-data.js"></script>
     <script src="js/v-app.js"></script>
 </body>
+
 </html>
