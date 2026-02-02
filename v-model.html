@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学習：V字モデル・完全版</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .v-line {
+            height: 2px;
+            background: repeating-linear-gradient(to right, #3b82f6 0, #3b82f6 5px, transparent 5px, transparent 10px);
+            opacity: 0.3;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 p-8">
+    <nav class="max-w-5xl mx-auto mb-8"><a href="index.html" class="text-blue-600 hover:underline">← 戻る</a></nav>
+
+    <div class="max-w-5xl mx-auto">
+        <header class="text-center mb-16">
+            <h1 class="text-4xl font-extrabold text-slate-800">V字モデル・エクスプローラー</h1>
+            <p class="text-slate-500 mt-2">1から順に進み、4番で折り返して、7番のゴールを目指します</p>
+        </header>
+
+        <div id="v-model-main" class="flex flex-col gap-6 mb-16">
+            </div>
+
+        <div id="detail-panel" class="max-w-3xl mx-auto bg-white border-2 border-blue-200 rounded-2xl p-8 shadow-xl transition-all opacity-0 transform translate-y-4">
+            <div class="flex items-center gap-4 mb-4">
+                <span id="detail-badge" class="px-3 py-1 rounded-full text-xs font-bold uppercase text-white"></span>
+                <h2 id="detail-title" class="text-2xl font-bold text-slate-800"></h2>
+            </div>
+            <p id="detail-desc" class="text-slate-600 leading-relaxed text-lg"></p>
+            <div class="mt-6 pt-6 border-t border-slate-100 italic text-blue-600 font-medium">
+                <span id="detail-relation"></span>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/v-data.js"></script>
+    <script src="js/v-app.js"></script>
+</body>
+</html>

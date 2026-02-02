@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>学習：テスト手法と技法</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-slate-50 p-8">
+    <nav class="max-w-4xl mx-auto mb-8"><a href="index.html" class="text-blue-600 hover:underline">← 戻る</a></nav>
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-3xl font-black mb-10 border-b pb-4">テストの手法と技法</h1>
+
+        <div class="grid gap-8">
+            <section class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
+                <h2 class="text-xl font-bold text-emerald-600 mb-6">1. 手法の分類（視点の違い）</h2>
+                <div class="space-y-6">
+                    <div class="border-l-4 border-slate-200 pl-4">
+                        <h3 class="font-bold">ブラックボックステスト</h3>
+                        <p class="text-slate-600 text-sm mt-1">中身は見ず、外部仕様（入力と出力）だけを確認します。</p>
+                    </div>
+                    <div class="border-l-4 border-slate-200 pl-4">
+                        <h3 class="font-bold">ホワイトボックステスト</h3>
+                        <p class="text-slate-600 text-sm mt-1">プログラム内部のロジックや条件分岐がすべて網羅されているかを確認します。</p>
+                    </div>
+                </div>
+
+                <div class="mt-6">
+                    <img src="images/white-black-box.png" alt="White-box vs Black-box Testing Diagram"
+                        class="w-full max-w-md mx-auto">
+                </div>
+
+            </section>
+
+            <section class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
+                <h2 class="text-xl font-bold text-emerald-600 mb-6">2. テストケース作成の技法（効率化）</h2>
+                <div class="space-y-6">
+                    <div class="bg-emerald-50 p-6 rounded-xl">
+                        <h3 class="font-bold">境界値分析</h3>
+                        <p class="text-slate-700 text-sm mt-2">「100以上」なら99, 100, 101をテストするなど、エラーが最も起きやすい境界線に集中する技法です。
+                        </p>
+                    </div>
+                    <div class="bg-emerald-50 p-6 rounded-xl">
+                        <h3 class="font-bold">同値分割</h3>
+                        <p class="text-slate-700 text-sm mt-2">同じ結果が出るはずの値をグループ化し、その中から1つだけ代表でテストすることで効率化する技法です。</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
+                <h2 class="text-xl font-bold text-emerald-600 mb-8">3. 現場での実践例：Web vs ゲーム</h2>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-slate-50 p-6 rounded-xl border border-slate-100">
+                        <h3 class="font-bold text-lg mb-4 flex items-center gap-2">
+                            <span class="bg-blue-100 text-blue-600 p-2 rounded-lg">🛒</span>
+                            Webアプリ編
+                            <span class="text-sm font-normal text-slate-500">(例：ECサイトの会員登録)</span>
+                        </h3>
+                        <ul class="space-y-4 text-sm text-slate-700">
+                            <li>
+                                <strong class="block text-slate-800 mb-1">ブラックボックス</strong>
+                                ユーザー画面で実際に情報を入力し、登録完了メールが届くかを確認。
+                            </li>
+                            <li>
+                                <strong class="block text-slate-800 mb-1">ホワイトボックス</strong>
+                                メールアドレスの形式チェックを行う正規表現のロジックが正しいかをコードで検証。
+                            </li>
+                            <li>
+                                <strong class="block text-slate-800 mb-1">境界値分析</strong>
+                                パスワードが「8文字以上」の場合、<span class="text-red-500 font-bold">7文字（失敗）</span>と<span class="text-emerald-500 font-bold">8文字（成功）</span>を入力して境界をテスト。
+                            </li>
+                            <li>
+                                <strong class="block text-slate-800 mb-1">同値分割</strong>
+                                年齢入力欄で、「未成年グループ」から1つ、「成人グループ」から1つ代表値を選んでテスト。
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-slate-50 p-6 rounded-xl border border-slate-100">
+                        <h3 class="font-bold text-lg mb-4 flex items-center gap-2">
+                            <span class="bg-purple-100 text-purple-600 p-2 rounded-lg">🎮</span>
+                            ゲームアプリ編
+                            <span class="text-sm font-normal text-slate-500">(例：RPGの戦闘ダメージ)</span>
+                        </h3>
+                        <ul class="space-y-4 text-sm text-slate-700">
+                            <li>
+                                <strong class="block text-slate-800 mb-1">ブラックボックス</strong>
+                                「攻撃」コマンドを選択し、敵のHPゲージが減る動作を目視で確認。
+                            </li>
+                            <li>
+                                <strong class="block text-slate-800 mb-1">ホワイトボックス</strong>
+                                「攻撃力 - 防御力 = ダメージ」という計算式がプログラム内で正しく実装されているか確認。
+                            </li>
+                            <li>
+                                <strong class="block text-slate-800 mb-1">境界値分析</strong>
+                                敵のHPが0になった瞬間の判定。<span class="text-emerald-500 font-bold">HP 1（生存）</span>と<span class="text-red-500 font-bold">HP 0（死亡）</span>の境界をテスト。
+                            </li>
+                            <li>
+                                <strong class="block text-slate-800 mb-1">同値分割</strong>
+                                1〜100の乱数で決まる攻撃ダメージ。「通常ダメージ範囲」から1つ値を固定してテストを行う。
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+    </div>
+</body>
+
+</html>

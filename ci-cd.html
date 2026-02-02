@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学習：CI/CDとテストの自動化</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-slate-50 p-8">
+    <nav class="max-w-4xl mx-auto mb-8"><a href="index.html" class="text-blue-600 hover:underline">← ポータルへ戻る</a></nav>
+
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-3xl font-black mb-10 border-b pb-4 text-slate-800">CI/CDとテストの自動化</h1>
+
+        <div class="space-y-12">
+            <section class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
+                <h2 class="text-xl font-bold text-red-600 mb-6 flex items-center gap-2">
+                    <span class="bg-red-100 p-2 rounded-lg">🚀</span> 1. CI/CDとは何か？
+                </h2>
+                <p class="text-slate-600 leading-relaxed mb-6">
+                    CI/CDは、ソフトウェアの変更を常にテストし、自動的に本番環境へ適用する仕組みのことです。
+                </p>
+                <div class="grid md:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-red-50 p-6 rounded-xl border border-red-100">
+                        <h3 class="font-bold text-red-700 mb-2">CI: 継続的インテグレーション</h3>
+                        <p class="text-sm text-red-900/70 leading-relaxed">
+                            コードが変更されるたびに、自動でビルドとテストを実行します。バグを早期に発見し、「常に動く状態」を保ちます。
+                        </p>
+                        <p class="mt-3 text-xs font-bold text-red-600">目的：統合時のトラブルを防ぐ</p>
+                    </div>
+                    <div class="bg-red-50 p-6 rounded-xl border border-red-100">
+                        <h3 class="font-bold text-red-700 mb-2">CD: 継続的デリバリー / デプロイ</h3>
+                        <p class="text-sm text-red-900/70 leading-relaxed">
+                            テストを通過したコードを、自動的にテスト環境や本番環境へリリースできるように準備、または適用します。
+                        </p>
+                        <p class="mt-3 text-xs font-bold text-red-600">目的：リリース作業を自動化する</p>
+                    </div>
+                </div>
+
+                <div class="mt-6">
+                    <h3 class="font-bold text-slate-700 mb-4 text-center">CI/CDパイプラインの全体像</h3>
+                    <img src="images/ci-cd-flow.png" alt="CI/CD Pipeline Diagram" class="w-full max-w-2xl mx-auto rounded-xl shadow-sm">
+                    <p class="text-xs text-slate-500 text-center mt-2">開発からデプロイまでの流れが自動化され、フィードバックループが回る様子</p>
+                </div>
+            </section>
+
+            <section class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
+                <h2 class="text-xl font-bold text-red-600 mb-6 flex items-center gap-2">
+                    <span class="bg-red-100 p-2 rounded-lg">📦</span> 2. バージョン管理 (Git) が出発点
+                </h2>
+                <p class="text-slate-600 leading-relaxed mb-6">
+                    CI/CDの全てのプロセスは、開発者がコードをバージョン管理システム（主にGit）に「プッシュ」することから始まります。
+                </p>
+                <div class="flex flex-col md:flex-row gap-8 items-center">
+                    <div class="flex-1 space-y-4">
+                        <div class="flex items-start gap-4">
+                            <div class="bg-slate-100 p-3 rounded-lg font-bold text-slate-700 whitespace-nowrap">1. コード変更</div>
+                            <p class="pt-1 text-slate-600 text-sm">開発者が手元の環境で機能を実装し、テストコードを書きます。</p>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="bg-slate-100 p-3 rounded-lg font-bold text-slate-700 whitespace-nowrap">2. コミット & プッシュ</div>
+                            <p class="pt-1 text-slate-600 text-sm">変更をGitに記録（コミット）し、リモートリポジトリ（GitHubなど）に送信（プッシュ）します。</p>
+                        </div>
+                        <div class="flex items-start gap-4 p-4 bg-red-50 rounded-xl border border-red-200 animate-pulse">
+                            <div class="font-bold text-red-700 whitespace-nowrap">🚀 トリガー発動！</div>
+                            <p class="pt-1 text-red-800 text-sm font-bold">この「プッシュ」を検知して、CI/CDツールが自動的に動き出します。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
+                <h2 class="text-xl font-bold text-red-600 mb-6 flex items-center gap-2">
+                    <span class="bg-red-100 p-2 rounded-lg">⚙️</span> 3. 具体的なパイプラインの流れ
+                </h2>
+                <p class="text-slate-600 leading-relaxed mb-6">
+                    代表的なCI/CDツールである「GitHub Actions」を例に、具体的な処理の流れを見てみましょう。
+                </p>
+                
+                <div class="mb-8">
+                    <img src="images/github-actions-flow.png" alt="GitHub Actions Workflow Example" class="w-full max-w-3xl mx-auto rounded-xl shadow-sm border border-slate-100">
+                    <p class="text-xs text-slate-500 text-center mt-2">プッシュをトリガーに、複数のテストが自動実行されるワークフローの例</p>
+                </div>
+
+                <div class="space-y-4">
+                    <h3 class="font-bold text-slate-700 mb-2">ワークフロー</h3>
+                    <ol class="list-decimal list-inside space-y-2 text-slate-600 ml-4">
+                        <li><strong>Checkout Code:</strong> GitHubから最新のソースコードを取得します。</li>
+                        <li><strong>Run Unit Tests (Jest):</strong> Jestなどを使って単体テストを実行し、ロジックの正しさを確認します。</li>
+                        <li><strong>Run Lint Check (ESLint):</strong> コードの書き方が規約に合っているか、静的解析を行います。</li>
+                        <li><strong>Run E2E Tests (Playwright):</strong> ブラウザを自動操作して、ユーザー視点での動作確認を行います。</li>
+                        <li><strong>Report Status:</strong> 全てのテスト結果をプルリクエストの画面などに通知します。失敗すればマージを阻止できます。</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
+                <h2 class="text-xl font-bold text-red-600 mb-6 flex items-center gap-2">
+                    <span class="bg-red-100 p-2 rounded-lg">✅</span> 4. 自動化されるテストの種類
+                </h2>
+                <p class="text-slate-600 leading-relaxed mb-6">
+                    CIパイプラインの中では、これまで学習した様々なテスト手法が自動化されて実行されます。
+                </p>
+                <div class="grid md:grid-cols-3 gap-4 text-sm">
+                    <div class="p-4 border border-slate-100 rounded-xl bg-slate-50">
+                        <strong class="text-emerald-600 block mb-2">① 単体テスト (Unit)</strong>
+                        <p class="text-slate-600 mb-2">最も高速に実行される。コミットのたびに毎回走らせるのが基本。</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-white border border-slate-200 px-2 py-0.5 rounded text-[10px] font-mono text-slate-500">Jest</span>
+                            <span class="bg-white border border-slate-200 px-2 py-0.5 rounded text-[10px] font-mono text-slate-500">Pytest</span>
+                        </div>
+                    </div>
+                    <div class="p-4 border border-slate-100 rounded-xl bg-slate-50">
+                        <strong class="text-purple-600 block mb-2">② 統合/E2Eテスト</strong>
+                        <p class="text-slate-600 mb-2">実行に時間がかかるため、重要なブランチへのマージ前などに絞って実行することが多い。</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-white border border-slate-200 px-2 py-0.5 rounded text-[10px] font-mono text-slate-500">Playwright</span>
+                            <span class="bg-white border border-slate-200 px-2 py-0.5 rounded text-[10px] font-mono text-slate-500">Cypress</span>
+                        </div>
+                    </div>
+                    <div class="p-4 border border-slate-100 rounded-xl bg-slate-50">
+                        <strong class="text-blue-600 block mb-2">③ 静的解析 (Lint)</strong>
+                        <p class="text-slate-600 mb-2">コードを実行せずに、バグの温床になる書き方や規約違反をチェックする。</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-white border border-slate-200 px-2 py-0.5 rounded text-[10px] font-mono text-slate-500">ESLint</span>
+                            <span class="bg-white border border-slate-200 px-2 py-0.5 rounded text-[10px] font-mono text-slate-500">Prettier</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="mt-20 py-10 text-center border-t border-slate-200">
+            <p class="text-slate-500 mb-6">CI/CDの仕組みは理解できましたか？</p>
+            <a href="quiz.html"
+                class="bg-slate-900 text-white px-12 py-4 rounded-full font-bold text-xl hover:bg-slate-800 transition shadow-xl">
+                クイズで知識をチェック！
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>

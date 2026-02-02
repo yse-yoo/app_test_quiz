@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>アプリケーションテスト学習ポータル</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-slate-50 text-slate-900 leading-relaxed">
+    <div class="max-w-4xl mx-auto px-6 py-12">
+        <header class="text-center mb-16">
+            <h1 class="text-4xl font-black text-slate-800 mb-4">テスト学習ロードマップ</h1>
+            <p class="text-slate-500 text-lg">各セクションを順番に学習して、クイズに備えましょう。</p>
+        </header>
+
+        <div class="grid gap-6">
+            <a href="v-model.html"
+                class="group bg-white p-8 rounded-2xl shadow-sm border border-slate-200 hover:border-blue-500 transition-all">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-800 group-hover:text-blue-600 transition">1. V字モデルを理解する
+                        </h2>
+                        <p class="text-slate-500 mt-2">開発フェーズとテストの関係性を学びます。</p>
+                    </div>
+                    <span class="text-2xl group-hover:translate-x-2 transition-transform">→</span>
+                </div>
+            </a>
+
+            <a href="methods.html"
+                class="group bg-white p-8 rounded-2xl shadow-sm border border-slate-200 hover:border-emerald-500 transition-all">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-800 group-hover:text-emerald-600 transition">2.
+                            テスト手法と技法</h2>
+                        <p class="text-slate-500 mt-2">ブラックボックスや境界値分析などのテクニックを学びます。</p>
+                    </div>
+                    <span class="text-2xl group-hover:translate-x-2 transition-transform">→</span>
+                </div>
+            </a>
+
+            <a href="tools.html"
+                class="group bg-white p-8 rounded-2xl shadow-sm border border-slate-200 hover:border-purple-500 transition-all">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-800 group-hover:text-purple-600 transition">3.
+                            モダンなテストツール</h2>
+                        <p class="text-slate-500 mt-2">Playwright、k6、Jestなど実務で使われるツールを学びます。</p>
+                    </div>
+                    <span class="text-2xl group-hover:translate-x-2 transition-transform">→</span>
+                </div>
+            </a>
+
+            <a href="methodologies.html"
+                class="group bg-white p-8 rounded-2xl shadow-sm border border-slate-200 hover:border-orange-500 transition-all">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-800 group-hover:text-orange-600 transition">4.
+                            開発モデルと最新手法
+                        </h2>
+                        <p class="text-slate-500 mt-2">ウォーターフォールからAI駆動型開発まで、手法の違いを学びます。</p>
+                    </div>
+                    <span class="text-2xl group-hover:translate-x-2 transition-transform">→</span>
+                </div>
+            </a>
+
+            <a href="ci-cd.html"
+                class="group bg-white p-8 rounded-2xl shadow-sm border border-slate-200 hover:border-red-500 transition-all">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-800 group-hover:text-red-600 transition">5.
+                            CI/CDとテストの自動化
+                        </h2>
+                        <p class="text-slate-500 mt-2">継続的インテグレーション/デリバリーの仕組みと、その中でのテストの役割を学びます。</p>
+                    </div>
+                    <span class="text-2xl group-hover:translate-x-2 transition-transform">→</span>
+                </div>
+            </a>
+        </div>
+
+        <div class="mt-16 text-center">
+            <a href="quiz.html"
+                class="inline-block bg-blue-600 text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-blue-700 transition transform hover:scale-105 active:scale-95 shadow-xl">
+                知識を試す：クイズを開始
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>

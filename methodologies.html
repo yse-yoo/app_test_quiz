@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>学習：開発モデルとテスト手法</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-slate-50 p-8">
+    <nav class="max-w-4xl mx-auto mb-8"><a href="index.html" class="text-blue-600 hover:underline">← ポータルへ戻る</a></nav>
+
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-3xl font-black mb-10 border-b pb-4 text-slate-800">開発プロセスとテスト戦略</h1>
+
+        <div class="space-y-12">
+            <section>
+                <h2 class="text-xl font-bold text-slate-700 mb-6 flex items-center gap-2">
+                    <span class="bg-orange-500 w-2 h-6 rounded-full"></span>
+                    開発モデルの基本
+                </h2>
+                <div class="grid md:grid-cols-1 gap-6">
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                        <h3 class="font-bold text-lg mb-2 text-orange-600">ウォーターフォール型</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                            要件定義から運用までを一直線に進める。各工程が完了してから次へ進むため、計画が立てやすいが、後戻りが困難。
+                        </p>
+                        <div class="flex justify-center mb-6">
+                            <img src="images/waterfall.png" class="w-[500px]" alt="Waterfall Model Diagram">
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4 text-sm border-t border-slate-100 pt-4">
+                            <div>
+                                <h4 class="font-bold text-slate-700 mb-2 flex items-center gap-1">
+                                    <span class="text-emerald-500">✅</span> メリット
+                                </h4>
+                                <ul class="space-y-1 text-slate-600 list-disc list-inside">
+                                    <li>計画・予算・納期が固定しやすい</li>
+                                    <li>各工程の成果物が明確で管理が容易</li>
+                                    <li>大規模な基幹システムに適している</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-700 mb-2 flex items-center gap-1">
+                                    <span class="text-rose-500">⚠️</span> デメリット
+                                </h4>
+                                <ul class="space-y-1 text-slate-600 list-disc list-inside">
+                                    <li>途中の仕様変更が極めて困難</li>
+                                    <li>終盤まで動作する実物を確認できない</li>
+                                    <li>後半のテストで不具合が出ると大打撃</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200">
+                        <h3 class="font-bold text-lg mb-2 text-blue-600">ハイブリッド型</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            全体計画はウォーターフォールで堅実に、実際の開発工程はアジャイルで柔軟に進める。大規模企業のDX化でよく採用される。
+                        </p>
+                        <p class="mt-4 text-[11px] font-bold text-slate-500">「安定」と「スピード」の両立を目指す</p>
+                        <div class="mt-6 pt-4 border-t border-slate-200">
+                            <div class="grid grid-cols-2 gap-4 text-sm">
+                                <div>
+                                    <h4 class="font-bold text-slate-700 mb-2 flex items-center gap-1">
+                                        <span class="text-emerald-500">✅</span> メリット
+                                    </h4>
+                                    <ul class="space-y-1 text-slate-600 list-disc list-inside">
+                                        <li>計画の見通しが立ちやすい（予算・納期）</li>
+                                        <li>開発中の仕様変更に柔軟に対応できる</li>
+                                        <li>ステークホルダー（経営層）の理解を得やすい</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-700 mb-2 flex items-center gap-1">
+                                        <span class="text-rose-500">⚠️</span> デメリット
+                                    </h4>
+                                    <ul class="space-y-1 text-slate-600 list-disc list-inside">
+                                        <li>両方の手法の「悪いとこ取り」になるリスク</li>
+                                        <li>プロセスが複雑になり、管理コストが増加する</li>
+                                        <li>チーム内で手法への理解度や文化の衝突が起きやすい</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
+                <h2 class="text-xl font-bold border-l-4 border-emerald-500 pl-4 mb-6">TDD (テスト駆動開発)</h2>
+
+                <div class="space-y-6">
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        「コードを書く前にテストを書く」手法。<b>Red（失敗）→ Green（成功）→ Refactor（整理）</b>という短いサイクルを繰り返すことで、設計の品質を担保します。
+                    </p>
+
+                    <div class="flex flex-col items-center py-4">
+                        <div class="grid grid-cols-3 gap-2 w-full text-center text-[24px] font-bold">
+                            <div class="p-3 border-2 border-red-200 rounded-xl text-red-600 bg-red-50">1. テスト作成<br>(失敗)
+                            </div>
+                            <div class="p-3 border-2 border-emerald-200 rounded-xl text-emerald-600 bg-emerald-50">2.
+                                実装コード<br>(成功)</div>
+                            <div class="p-3 border-2 border-blue-200 rounded-xl text-blue-600 bg-blue-50">3.
+                                リファクタ<br>(最適化)</div>
+                        </div>
+                        <p class="text-slate-400 mt-2">※このサイクルを数分単位で高速に回します</p>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4 text-sm border-t border-slate-100 pt-6">
+                        <div>
+                            <h4 class="font-bold text-slate-700 mb-2 flex items-center gap-1">
+                                <span class="text-emerald-500">✅</span> メリット
+                            </h4>
+                            <ul class="space-y-1 text-slate-600 list-disc list-inside">
+                                <li>バグを極めて早い段階で排除できる</li>
+                                <li>テストコードが常に最新の仕様書になる</li>
+                                <li>恐れずにリファクタリングができる</li>
+                                <li>疎結合で再利用性の高い設計になる</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-700 mb-2 flex items-center gap-1">
+                                <span class="text-rose-500">⚠️</span> デメリット
+                            </h4>
+                            <ul class="space-y-1 text-slate-600 list-disc list-inside">
+                                <li>初期の開発スピードが一時的に低下する</li>
+                                <li>テストの書き方自体の学習コストが高い</li>
+                                <li>UIなどの頻繁な変更に弱い場合がある</li>
+                                <li>全コードのテスト維持に工数がかかる</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-bold text-slate-700 mb-6 flex items-center gap-2">
+                    <span class="bg-indigo-500 w-2 h-6 rounded-full"></span>
+                    次世代の開発と運用
+                </h2>
+                <div class="grid md:grid-cols-1 gap-6">
+                    <div class="bg-indigo-50 p-6 rounded-2xl border border-indigo-100">
+                        <h3 class="font-bold text-indigo-800 mb-2 flex items-center gap-2">
+                            AI駆動型開発 (AI-Driven)
+                        </h3>
+                        <p class="text-sm text-indigo-900/70 leading-relaxed">
+                            GitHub CopilotやCursorなどのAIを活用。AIがテストコードの生成、バグの予測、テストデータの作成を自動で行う。
+                        </p>
+                        <div class="mt-6 pt-4 border-t border-indigo-200">
+                            <div class="grid grid-cols-2 gap-4 text-sm">
+                                <div>
+                                    <h4 class="font-bold text-indigo-800 mb-2 flex items-center gap-1">
+                                        <span class="text-emerald-500">✅</span> メリット
+                                    </h4>
+                                    <ul class="space-y-1 text-indigo-900/80 list-disc list-inside">
+                                        <li>開発速度が劇的に向上</li>
+                                        <li>単純なバグを未然に防止</li>
+                                        <li>テストカバレッジの向上</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-indigo-800 mb-2 flex items-center gap-1">
+                                        <span class="text-rose-500">⚠️</span> デメリット
+                                    </h4>
+                                    <ul class="space-y-1 text-indigo-900/80 list-disc list-inside">
+                                        <li>AIの回答が常に正しいとは限らない</li>
+                                        <li>セキュリティ/著作権リスクの懸念</li>
+                                        <li>コードの意図がブラックボックス化しやすい</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+
+    </div>
+</body>
+
+</html>
